@@ -1,0 +1,103 @@
+#!csharp
+
+var list = new List<int>() { 8, 3, 2 };
+list
+
+#!csharp
+
+var listA = new List<int>() { 8, 3, 2 };
+var listB = new List<int>(listA);
+listB
+
+#!csharp
+
+listB.Add(5);
+listB
+
+#!csharp
+
+listA.AddRange(Enumerable.Range(0, 4));
+listA
+
+#!csharp
+
+list.Clear();
+list
+
+#!csharp
+
+bool result = listA.Contains(3);
+result
+
+#!csharp
+
+bool result = listA.Exists(x => x > 3);
+result
+
+#!csharp
+
+var listA = new List<int>() { 8, 3, 2 };
+var listB = listA;
+bool result = listA.Equals(listB);
+result
+
+#!csharp
+
+var listA = new List<int>() { 8, 3, 2 };
+var listB = new List<int>() { 8, 3, 2 };
+bool result = listA.Equals(listB);
+result
+
+#!csharp
+
+int item = listA.Find(x => x > 2);
+item
+
+#!csharp
+
+var items = listA.FindAll(x => x > 2);
+items
+
+#!csharp
+
+int index = listA.FindIndex(x => x < 5);
+index
+
+#!csharp
+
+int index = listA.FindIndex(x => x > 100);
+index
+
+#!csharp
+
+int item = listA.FindLast(x => x < 5);
+item
+
+#!csharp
+
+listA.ForEach(x => { Console.WriteLine(x); });
+
+#!csharp
+
+int index = listA.IndexOf(8);
+index
+
+#!csharp
+
+listA.Insert(index: 1, item: 5);
+listA
+
+#!csharp
+
+listA.Remove(item: 5);
+listA
+
+#!csharp
+
+listA.RemoveAt(index: 0);
+listA
+
+#!csharp
+
+listA.Reverse();
+listA
