@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "middleware.demo", "middleware.demo\middleware.demo.csproj", "{769EBBF2-EBA9-4814-80D2-A86E009AE1DC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dependencyInjection.demo", "dependencyInjection.demo\dependencyInjection.demo.csproj", "{923C6641-B010-430D-9800-7CC94F74934C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{769EBBF2-EBA9-4814-80D2-A86E009AE1DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{769EBBF2-EBA9-4814-80D2-A86E009AE1DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{769EBBF2-EBA9-4814-80D2-A86E009AE1DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{923C6641-B010-430D-9800-7CC94F74934C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{923C6641-B010-430D-9800-7CC94F74934C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{923C6641-B010-430D-9800-7CC94F74934C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{923C6641-B010-430D-9800-7CC94F74934C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
