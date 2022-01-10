@@ -1,0 +1,25 @@
+GET https://localhost:5001?culture=es-es
+Accept: application/json
+
+###
+
+GET https://localhost:5000?culture=es-es
+Accept: application/json
+
+###
+
+GET https://localhost:5001?culture=es-es
+Accept: application/json
+
+###
+
+GET https://localhost:5001?culture=es-es
+Accept: application/json
+
+###
+
+GET https://localhost:5001?culture=es-es
+Accept: application/json
+
+###
+
