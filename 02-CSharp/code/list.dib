@@ -101,3 +101,8 @@ listA
 
 listA.Reverse();
 listA
+
+#!csharp
+
+listA.Sort();
+listA

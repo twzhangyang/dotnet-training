@@ -66,3 +66,15 @@ var teenAgerStudentsID = studentList.Where(s => s.Age > 12 && s.Age < 20)
                                   .Select(x => x.StudentID)
                                   .ToList();
 teenAgerStudentsID
+
+#!csharp
+
+Func<Student, bool> isStudentTeenAger = s => s.Age > 12 && s.Age < 20;
+Func<Student, int> getStudentId = s => s.StudentID;
+
+#!csharp
+
+var teenAgerStudentsID = studentList.Where(isStudentTeenAger)
+                                  .Select(getStudentId)
+                                  .ToList();
+teenAgerStudentsID
