@@ -84,3 +84,13 @@ orderByResult
 #!csharp
 
 //???
+
+#!csharp
+
+var thenByResult = studentList.OrderBy(s => s.StudentName).ThenBy(s => s.Age);
+thenByResult
+
+#!csharp
+
+var thenByDescResult = studentList.OrderBy(s => s.StudentName).ThenByDescending(s => s.Age);
+thenByDescResult
