@@ -27,7 +27,9 @@ try
         .AddCheck<SampleHealthCheck>("Sample")
         .AddCheck<StartupHealthCheck>(
             "Startup",
-            tags: new[] { "ready" });
+            tags: new[] { "ready" })
+        .AddDbContextCheck<MusicDbContext>("Database", tags: new[] { "ready" });
+
     builder.Services.AddHostedService<StartupBackgroundService>();
     builder.Services.AddSingleton<StartupHealthCheck>();
 
