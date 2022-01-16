@@ -10,8 +10,8 @@ namespace WebApi.Controllers
     [ApiController]
     public class ArtistsController : ControllerBase
     {
-        private readonly ApiDbContext _dbContext;
-        public ArtistsController(ApiDbContext dbContext)
+        private readonly MusicDbContext _dbContext;
+        public ArtistsController(MusicDbContext dbContext)
         {
             _dbContext = dbContext;
         }

@@ -3,9 +3,9 @@ using WebApi.Models;
 
 namespace WebApi.Repository
 {
-    public class ApiDbContext : DbContext
+    public class MusicDbContext : DbContext
     {
-        public ApiDbContext(DbContextOptions<ApiDbContext>options) : base(options)
+        public MusicDbContext(DbContextOptions<MusicDbContext>options) : base(options)
         {
 
         }

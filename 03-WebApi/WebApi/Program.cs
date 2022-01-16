@@ -1,6 +1,8 @@
+using Microsoft.EntityFrameworkCore;
 using NLog;
 using NLog.Web;
 using WebApi.Error;
+using WebApi.Repository;
 
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 
@@ -13,11 +15,12 @@ try
     builder.Logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
     builder.Host.UseNLog();
 
+// Entity Framework Inmemory
+    builder.Services.AddDbContext<MusicDbContext>(opt =>
+        opt.UseInMemoryDatabase("music-db"));
+
 // Add services to the container.
-    builder.Services.AddControllers(options =>
-    {
-        options.Filters.Add<HttpResponseExceptionFilter>();
-    });
+    builder.Services.AddControllers(options => { options.Filters.Add<HttpResponseExceptionFilter>(); });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
