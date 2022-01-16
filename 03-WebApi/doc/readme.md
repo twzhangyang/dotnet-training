@@ -18,3 +18,8 @@ https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetco
 2. Create a nlog.config file.
 3. Update program.cs
   
+
+### Handle errors in ASP.NET Core
+- Error handler middleware
+- Use exceptions filter to modify the response
+- Logging unhandled exception

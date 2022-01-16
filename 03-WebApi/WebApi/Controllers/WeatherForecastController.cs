@@ -31,11 +31,4 @@ public class WeatherForecastController : ControllerBase
             })
             .ToArray();
     }
-
-    [HttpGet(template:"test")]
-    public void TestLogging()
-    {
-        _logger.LogError("music was wrong !!!!");
-        throw new ApplicationException("here is some exception");
-    }
 }
