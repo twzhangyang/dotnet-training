@@ -33,6 +33,18 @@ try
     builder.Services.AddHostedService<StartupBackgroundService>();
     builder.Services.AddSingleton<StartupHealthCheck>();
 
+// CORS
+    const string myAllowSpecificOrigins = "_myAllowSpecificOrigins";
+    builder.Services.AddCors(options =>
+    {
+        options.AddPolicy(name: myAllowSpecificOrigins,
+            builder =>
+            {
+                builder.WithOrigins("http://example.com",
+                    "http://www.contoso.com");
+            });
+    });
+
 // Add services to the container.
     builder.Services.AddControllers(options => { options.Filters.Add<HttpResponseExceptionFilter>(); });
 
@@ -76,6 +88,8 @@ try
     {
         Predicate = _ => false
     });
+
+    app.UseCors(myAllowSpecificOrigins);
 
     app.Run();
 }

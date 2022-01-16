@@ -1,25 +1,31 @@
-## .NET API
-### nullable
-
+## docker
+- Build Music API
 ```
-<Nullable>enable</Nullable>
+ docker build -f ./WebApi/Dockerfile -t music-api:v1 .
+``` 
+- Run Music API
 ```
-
-### Logging
-https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-6.0#third-party-logging-providers
-### NLog
-1. Add dependency in csproj manually or using NuGet
+docker run -d -e ASPNETCORE_ENVIRONMENT="Development" -p 8000:80 music-api:v1
+``` 
+- Run Api
 ```
-<ItemGroup>
-  <PackageReference Include="NLog.Web.AspNetCore" Version="4.*" />
-  <PackageReference Include="NLog" Version="4.*" />
-</ItemGroup>
+http://localhost:8000/swagger/index.html
 ```
-2. Create a nlog.config file.
-3. Update program.cs
-  
-
-### Handle errors in ASP.NET Core
-- Error handler middleware
-- Use exceptions filter to modify the response
-- Logging unhandled exception
+- Run PostgreSQL
+```
+docker run -e POSTGRES_USER=music -e POSTGRES_PASSWORD=music123 \
+-e PGDATA=/var/lib/postgresql/data/pgdata -v /tmp:/var/lib/postgresql/data \
+-p 5432:5432 -it postgres:14
+```
+- psql
+```
+psql -U music -W -h localhost -p 5432
+```
+## docker-compose
+```
+docker-compose up 
+```
+- check postgreSQL by Adminer
+```
+http://localhost:8080/
+```
