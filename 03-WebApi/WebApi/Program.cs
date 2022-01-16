@@ -1,7 +1,10 @@
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using NLog;
 using NLog.Web;
 using WebApi.Error;
+using WebApi.HealthCheck;
 using WebApi.Repository;
 
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
@@ -18,6 +21,15 @@ try
 // Entity Framework Inmemory
     builder.Services.AddDbContext<MusicDbContext>(opt =>
         opt.UseInMemoryDatabase("music-db"));
+
+// Health check
+    builder.Services.AddHealthChecks()
+        .AddCheck<SampleHealthCheck>("Sample")
+        .AddCheck<StartupHealthCheck>(
+            "Startup",
+            tags: new[] { "ready" });
+    builder.Services.AddHostedService<StartupBackgroundService>();
+    builder.Services.AddSingleton<StartupHealthCheck>();
 
 // Add services to the container.
     builder.Services.AddControllers(options => { options.Filters.Add<HttpResponseExceptionFilter>(); });
@@ -43,6 +55,25 @@ try
     app.UseAuthorization();
 
     app.MapControllers();
+    app.MapHealthChecks("/healthz", new HealthCheckOptions
+    {
+        ResultStatusCodes =
+        {
+            [HealthStatus.Healthy] = StatusCodes.Status200OK,
+            [HealthStatus.Degraded] = StatusCodes.Status200OK,
+            [HealthStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable
+        },
+        Predicate = healthCheck => healthCheck.Name.Equals("Sample")
+    });
+    app.MapHealthChecks("/healthz/ready", new HealthCheckOptions
+    {
+        Predicate = healthCheck => healthCheck.Tags.Contains("ready")
+    });
+
+    app.MapHealthChecks("/healthz/live", new HealthCheckOptions
+    {
+        Predicate = _ => false
+    });
 
     app.Run();
 }
