@@ -1,4 +1,4 @@
-namespace WebApi.Tests.RepositoryTests;
+namespace WebApi.Tests.DbContextTests;
 
 public class MusicDbContextTests
 {
