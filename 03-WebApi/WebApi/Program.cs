@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using NLog;
 using NLog.Web;
+using WebApi.Artist;
 using WebApi.Error;
 using WebApi.HealthCheck;
 using WebApi.Repository;
@@ -20,7 +21,8 @@ try
 
 // Entity Framework Inmemory
     builder.Services.AddDbContext<MusicDbContext>(opt =>
-        opt.UseInMemoryDatabase("music-db"));
+        opt.UseNpgsql(builder.Configuration.GetConnectionString("MusicContext")));
+    builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 // Health check
     builder.Services.AddHealthChecks()
@@ -51,6 +53,9 @@ try
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
+
+// Register Repository
+    builder.Services.RegisterArtist();
 
     var app = builder.Build();
 

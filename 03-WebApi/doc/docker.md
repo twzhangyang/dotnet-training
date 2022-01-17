@@ -29,3 +29,18 @@ docker-compose up
 ```
 http://localhost:8080/
 ```
+- start database only
+```
+docker-compose up -d postgresql.data adminer
+```
+- pgsql
+```
+psql -psql -U music -W -h localhost -p 5432
+```
+- pgcli
+```
+pgcli postgres://music:music123@localhost:5432
+use music_db
+\d
+
+```
