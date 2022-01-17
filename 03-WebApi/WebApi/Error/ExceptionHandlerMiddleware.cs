@@ -16,6 +16,7 @@ namespace WebApi.Error;
                     context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                     context.Response.ContentType = "application/json";
 
+                    var logger = app.ApplicationServices.GetRequiredService<ILogger<Program>>();
                     var contextFeature = context.Features.Get<IExceptionHandlerPathFeature>();
                     if (contextFeature != null)
                     {
@@ -31,6 +32,7 @@ namespace WebApi.Error;
                                 Title = isDev ? $"{ex.Message}" : "An error occurred.",
                                 Detail = isDev ? ex.StackTrace : null
                             }));
+                        logger.LogCritical(ex, "Unhandled exception");
                     }
                 });
             });
