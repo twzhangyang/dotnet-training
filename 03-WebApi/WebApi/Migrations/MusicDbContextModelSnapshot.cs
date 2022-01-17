@@ -22,31 +22,7 @@ namespace WebApi.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("WebApi.Models.Album", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("ArtistId")
-                        .HasColumnType("uuid");
-
-                    b.Property<byte[]>("Image")
-                        .IsRequired()
-                        .HasColumnType("bytea");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ArtistId");
-
-                    b.ToTable("Albums");
-                });
-
-            modelBuilder.Entity("WebApi.Models.Artist", b =>
+            modelBuilder.Entity("WebApi.Artist.Artist", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -75,10 +51,7 @@ namespace WebApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("AlbumId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("ArtistId")
+                    b.Property<Guid>("ArtistForeignKey")
                         .HasColumnType("uuid");
 
                     b.Property<byte[]>("AudioFile")
@@ -105,52 +78,24 @@ namespace WebApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AlbumId");
-
-                    b.HasIndex("ArtistId");
+                    b.HasIndex("ArtistForeignKey");
 
                     b.ToTable("Songs");
                 });
 
-            modelBuilder.Entity("WebApi.Models.Album", b =>
-                {
-                    b.HasOne("WebApi.Models.Artist", "Artist")
-                        .WithMany("Albums")
-                        .HasForeignKey("ArtistId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Artist");
-                });
-
             modelBuilder.Entity("WebApi.Models.Song", b =>
                 {
-                    b.HasOne("WebApi.Models.Album", "Album")
+                    b.HasOne("WebApi.Artist.Artist", "Artist")
                         .WithMany("Songs")
-                        .HasForeignKey("AlbumId")
+                        .HasForeignKey("ArtistForeignKey")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("WebApi.Models.Artist", "Artist")
-                        .WithMany("Songs")
-                        .HasForeignKey("ArtistId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Album");
 
                     b.Navigation("Artist");
                 });
 
-            modelBuilder.Entity("WebApi.Models.Album", b =>
+            modelBuilder.Entity("WebApi.Artist.Artist", b =>
                 {
-                    b.Navigation("Songs");
-                });
-
-            modelBuilder.Entity("WebApi.Models.Artist", b =>
-                {
-                    b.Navigation("Albums");
-
                     b.Navigation("Songs");
                 });
 #pragma warning restore 612, 618

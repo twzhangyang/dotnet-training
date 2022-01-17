@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -48,7 +49,8 @@ try
     });
 
 // Add services to the container.
-    builder.Services.AddControllers(options => { options.Filters.Add<HttpResponseExceptionFilter>(); });
+    builder.Services.AddControllers(options => { options.Filters.Add<HttpResponseExceptionFilter>(); })
+        .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
@@ -108,4 +110,6 @@ finally
     NLog.LogManager.Shutdown();
 }
 
-public partial class Program { }
+public partial class Program
+{
+}

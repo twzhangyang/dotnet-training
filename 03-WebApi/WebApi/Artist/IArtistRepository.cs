@@ -28,12 +28,14 @@ public class ArtistRepository : IArtistRepository
         return await _dbContext.Artists
             .Skip((currentPageNumber - 1) * currentPageSize)
             .Take(currentPageSize)
+            .Include(x=>x.Songs)
             .ToListAsync();
     }
 
     public async Task<Artist?> GetArtist(Guid id)
     {
         return await _dbContext.Artists
+            .Include(x => x.Songs)
             .FirstOrDefaultAsync(x => x.Id == id);
     }
 

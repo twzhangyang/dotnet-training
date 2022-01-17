@@ -6,7 +6,6 @@ namespace WebApi.Artist
     {
         public Artist()
         {
-            Albums = new List<Album>();
             Songs = new List<Song>();
         }
 
@@ -15,8 +14,6 @@ namespace WebApi.Artist
 
         public string Gender { get; set; } = null!;
         public byte[] Image { get; set; } = null!;
-
-        public List<Album> Albums { get; set; }
         public List<Song> Songs { get; set; }
     }
 }
