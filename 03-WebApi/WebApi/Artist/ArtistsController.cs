@@ -15,10 +15,10 @@ namespace WebApi.Artist
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(AddArtistRequest artist)
+        public async Task<Artist> Post(AddArtistRequest artist)
         {
-            await _artistService.Save(artist);
-            return StatusCode(StatusCodes.Status201Created);
+           var newArtist =  await _artistService.Save(artist);
+           return newArtist;
         }
 
         // api/artists
