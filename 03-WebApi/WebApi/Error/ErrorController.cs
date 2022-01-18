@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebApi.Controllers;
+namespace WebApi.Error;
 
 // [ApiExplorerSettings(IgnoreApi = true)]
 [Route("[controller]")]

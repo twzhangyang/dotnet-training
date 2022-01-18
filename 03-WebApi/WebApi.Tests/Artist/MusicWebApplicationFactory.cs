@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using WebApi.Repository;
+using WebApi.Infrastructure;
 using WebApi.Tests.TestSeeds;
 
 namespace WebApi.Tests.Artist;

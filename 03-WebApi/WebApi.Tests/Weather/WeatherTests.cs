@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using WebApi.Models;
 using WebApi.Tests.Artist;
+using WebApi.Weather;
 using Xunit;
 
-namespace WebApi.Tests;
+namespace WebApi.Tests.Weather;
 
 public class WeatherTests : IClassFixture<MusicWebApplicationFactory<Program>>
 {

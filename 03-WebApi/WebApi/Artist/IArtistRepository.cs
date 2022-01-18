@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using WebApi.Repository;
+using WebApi.Infrastructure;
 
 namespace WebApi.Artist;
 

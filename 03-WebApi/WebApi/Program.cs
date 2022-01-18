@@ -1,13 +1,15 @@
 using System.Text.Json.Serialization;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using NLog;
 using NLog.Web;
 using WebApi.Artist;
+using WebApi.Artist.Request;
 using WebApi.Error;
 using WebApi.HealthCheck;
-using WebApi.Repository;
+using WebApi.Infrastructure;
 
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 
@@ -49,8 +51,13 @@ try
     });
 
 // Add services to the container.
-    builder.Services.AddControllers(options => { options.Filters.Add<HttpResponseExceptionFilter>(); })
-        .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+    builder.Services.AddControllers(options =>
+        {
+            options.Filters.Add<HttpResponseExceptionFilter>();
+        })
+        .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles)
+        .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddArtistRequestValidator>())
+        ;
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
@@ -71,7 +78,7 @@ try
 // Configure error handling
     app.ConfigureExceptionHandler(app.Environment);
 
-    app.UseHttpsRedirection();
+    // app.UseHttpsRedirection();
 
     app.UseAuthorization();
 
@@ -110,6 +117,9 @@ finally
     NLog.LogManager.Shutdown();
 }
 
-public partial class Program
+namespace WebApi
 {
+    public partial class Program
+    {
+    }
 }

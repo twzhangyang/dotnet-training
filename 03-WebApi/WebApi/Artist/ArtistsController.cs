@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebApi.Artist.Request;
 
 namespace WebApi.Artist
 {
@@ -14,7 +15,7 @@ namespace WebApi.Artist
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromForm] Artist artist)
+        public async Task<IActionResult> Post(AddArtistRequest artist)
         {
             await _artistService.Save(artist);
             return StatusCode(StatusCodes.Status201Created);

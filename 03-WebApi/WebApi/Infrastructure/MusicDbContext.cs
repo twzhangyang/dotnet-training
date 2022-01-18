@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WebApi.Models;
 
-namespace WebApi.Repository
+namespace WebApi.Infrastructure
 {
     public class MusicDbContext : DbContext
     {
@@ -9,7 +8,7 @@ namespace WebApi.Repository
         {
         }
 
-        public DbSet<Song> Songs { get; set; } = null!;
+        public DbSet<Song.Song> Songs { get; set; } = null!;
         public DbSet<Artist.Artist> Artists { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

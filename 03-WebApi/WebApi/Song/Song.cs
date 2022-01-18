@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace WebApi.Models
+﻿namespace WebApi.Song
 {
     public class Song
     {
@@ -17,7 +15,7 @@ namespace WebApi.Models
         public byte[] Image { get; set; } = null!;
         public byte[] AudioFile { get; set; } = null!;
 
-        public Artist.Artist Artist { get; set; }
+        public Artist.Artist Artist { get; set; } = null!;
 
         public Guid ArtistForeignKey { get; set; }
     }

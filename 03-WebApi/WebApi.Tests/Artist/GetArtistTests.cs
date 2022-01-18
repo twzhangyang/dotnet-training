@@ -8,11 +8,11 @@ using Xunit;
 
 namespace WebApi.Tests.Artist;
 
-public class ArtistTests : IClassFixture<MusicWebApplicationFactory<Program>>
+public class GetArtistTests : IClassFixture<MusicWebApplicationFactory<Program>>
 {
     private readonly MusicWebApplicationFactory<Program> _factory;
 
-    public ArtistTests(MusicWebApplicationFactory<Program> factory)
+    public GetArtistTests(MusicWebApplicationFactory<Program> factory)
     {
         _factory = factory;
     }

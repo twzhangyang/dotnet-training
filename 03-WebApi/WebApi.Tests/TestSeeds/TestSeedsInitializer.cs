@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
-using WebApi.Models;
-using WebApi.Repository;
+using WebApi.Infrastructure;
 
 namespace WebApi.Tests.TestSeeds;
 
@@ -13,7 +12,7 @@ public static class TestSeedsInitializer
     public static void Initialize(MusicDbContext dbContext)
     {
         var image = Encoding.ASCII.GetBytes("image");
-        var song = new Song()
+        var song = new Song.Song()
         {
             Duration = "duration",
             Image = image,
@@ -27,7 +26,7 @@ public static class TestSeedsInitializer
             Gender = "Male",
             Name = "Jay",
             Image = image,
-            Songs = new List<Song>() { song }
+            Songs = new List<Song.Song>() { song }
         };
 
         dbContext.Add(artist);

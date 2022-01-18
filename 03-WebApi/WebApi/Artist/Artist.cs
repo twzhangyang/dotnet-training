@@ -1,12 +1,10 @@
-﻿using WebApi.Models;
-
-namespace WebApi.Artist
+﻿namespace WebApi.Artist
 {
     public class Artist
     {
         public Artist()
         {
-            Songs = new List<Song>();
+            Songs = new List<Song.Song>();
         }
 
         public Guid Id { get; set; }
@@ -14,6 +12,6 @@ namespace WebApi.Artist
 
         public string Gender { get; set; } = null!;
         public byte[] Image { get; set; } = null!;
-        public List<Song> Songs { get; set; }
+        public List<Song.Song> Songs { get; set; }
     }
 }

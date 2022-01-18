@@ -1,3 +1,5 @@
+using WebApi.Artist.Request;
+
 namespace WebApi.Artist;
 
 public interface IArtistService
@@ -6,7 +8,7 @@ public interface IArtistService
 
     Task<Artist?> GetArtist(Guid id);
 
-    Task<Artist> Save(Artist artist);
+    Task<Artist> Save(AddArtistRequest artist);
 }
 
 public class ArtistService : IArtistService
@@ -27,8 +29,8 @@ public class ArtistService : IArtistService
         return _artistRepository.GetArtist(id);
     }
 
-    public Task<Artist> Save(Artist artist)
+    public Task<Artist> Save(AddArtistRequest artist)
     {
-        return _artistRepository.Save(artist);
+        return _artistRepository.Save(artist.ToArtist());
     }
 }
